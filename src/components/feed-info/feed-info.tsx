@@ -1,7 +1,12 @@
-import { FC } from 'react';
+// src/components/feed-info/feed-info.tsx
+import { FC, useEffect } from 'react';
 
 import { TOrder } from '@utils-types';
 import { FeedInfoUI } from '../ui/feed-info';
+
+import { useDispatch, useSelector } from '../../services/store';
+import { fetchFeeds } from '../../services/slices/feedsSlice';
+import { RootState } from '../../services/store';
 
 const getOrders = (orders: TOrder[], status: string): number[] =>
   orders
@@ -11,8 +16,21 @@ const getOrders = (orders: TOrder[], status: string): number[] =>
 
 export const FeedInfo: FC = () => {
   /** TODO: взять переменные из стора */
-  const orders: TOrder[] = [];
-  const feed = {};
+  const dispatch = useDispatch();
+
+  // Get the feeds data from the Redux store
+  const { data, loading, error } = useSelector(
+    (state: RootState) => state.feeds
+  );
+
+  useEffect(() => {
+    if (!data && !loading && !error) {
+      dispatch(fetchFeeds());
+    }
+  }, [dispatch, data, loading, error]);
+
+  const orders: TOrder[] = data?.orders || [];
+  const feed = data || {};
 
   const readyOrders = getOrders(orders, 'done');
 
