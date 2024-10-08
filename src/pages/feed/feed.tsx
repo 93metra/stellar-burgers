@@ -9,10 +9,6 @@ import { RootState } from '../../services/store';
 
 export const Feed: FC = () => {
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchFeeds());
-  }, [dispatch]);
-
   const { data: feedsData, loading } = useSelector(
     (state: RootState) => state.feeds
   );
@@ -25,5 +21,9 @@ export const Feed: FC = () => {
     return <Preloader />;
   }
 
-  return <FeedUI orders={feedsData.orders} handleGetFeeds={() => {}} />;
+  const handleGetFeeds = () => {
+    dispatch(fetchFeeds());
+  };
+
+  return <FeedUI orders={feedsData.orders} handleGetFeeds={handleGetFeeds} />;
 };

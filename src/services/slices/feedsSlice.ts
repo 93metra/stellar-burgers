@@ -1,3 +1,4 @@
+// src/services/slices/feedsSlice.ts
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { getFeedsApi } from '../../utils/burger-api';
 import { TOrdersData } from '../../utils/types';

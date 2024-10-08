@@ -8,6 +8,8 @@ import {
   ProfileIcon
 } from '@zlden/react-developer-burger-ui-components';
 
+import { Navigate, NavLink } from 'react-router-dom';
+
 export const AppHeaderUI: FC<TAppHeaderUIProps> = ({ userName }) => (
   <header className={styles.header}>
     <nav className={`${styles.menu} p-4`}>

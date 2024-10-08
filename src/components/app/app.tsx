@@ -15,9 +15,25 @@ import styles from './app.module.css';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { AppHeader } from '@components';
 
+import { useDispatch } from '../../services/store';
+import { useEffect } from 'react';
+import { fetchIngredients } from '../../services/slices/ingredientsSlice';
+import { fetchFeeds } from '../../services/slices/feedsSlice';
+
 const App = () => {
   // Заглушка для защищённых роутов (в дальнейшем можно заменить на реальную проверку авторизации)
   const isAuthenticated = true; // или true, в зависимости от состояния авторизации
+  const dispatch = useDispatch();
+
+  // Get the ingredients data from the Redux store
+  useEffect(() => {
+    dispatch(fetchIngredients());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchFeeds());
+  }, [dispatch]);
+
   return (
     <div className={styles.app}>
       <AppHeader />
