@@ -12,7 +12,7 @@ import {
 import { Modal, OrderInfo, IngredientDetails } from '@components';
 import '../../index.css';
 import styles from './app.module.css';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { AppHeader } from '@components';
 
 import { useDispatch } from '../../services/store';
@@ -21,6 +21,12 @@ import { fetchIngredients } from '../../services/slices/ingredientsSlice';
 import { fetchFeeds } from '../../services/slices/feedsSlice';
 
 const App = () => {
+
+  const navigate = useNavigate();
+  const closeModal = (path: string) => {
+    navigate(`${path}`, { replace: true });
+  };
+
   // Заглушка для защищённых роутов (в дальнейшем можно заменить на реальную проверку авторизации)
   const isAuthenticated = true; // или true, в зависимости от состояния авторизации
   const dispatch = useDispatch();
@@ -44,7 +50,7 @@ const App = () => {
         <Route
           path='/feed/:id'
           element={
-            <Modal title='Детали заказа' onClose={() => {}}>
+            <Modal title='Детали заказа' onClose={() => closeModal('/feed')}>
               <OrderInfo />
             </Modal>
           }
