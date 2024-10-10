@@ -22,7 +22,11 @@ export const OrderInfo: FC = () => {
   const params = useParams();
   const dispatch = useDispatch();
 
-  const { data: orderData, loading, error } = useSelector((state) => state.orders);
+  const {
+    data: orderData,
+    loading,
+    error
+  } = useSelector((state) => state.orders);
   const ingredients = useSelector((state) => state.ingredients.data);
 
   useEffect(() => {
@@ -30,7 +34,7 @@ export const OrderInfo: FC = () => {
       dispatch(fetchOrderByNumber(Number(params.id)));
     }
   }, [dispatch, params.id]);
-  
+
   // useEffect(() => {
   //   if (orderData) {
   //     console.log("Order Data:", orderData);

@@ -1,3 +1,4 @@
+// src/components/app/app.tsx
 import {
   ConstructorPage,
   Feed,
@@ -14,6 +15,7 @@ import '../../index.css';
 import styles from './app.module.css';
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { AppHeader } from '@components';
+// import { AppHeader } from '@ui';
 
 import { useDispatch } from '../../services/store';
 import { useEffect } from 'react';
@@ -21,7 +23,6 @@ import { fetchIngredients } from '../../services/slices/ingredientsSlice';
 import { fetchFeeds } from '../../services/slices/feedsSlice';
 
 const App = () => {
-
   const navigate = useNavigate();
   const closeModal = (path: string) => {
     navigate(`${path}`, { replace: true });
@@ -58,7 +59,10 @@ const App = () => {
         <Route
           path='/ingredients/:id'
           element={
-            <Modal title='Информация о ингредиенте' onClose={() => {}}>
+            <Modal
+              title='Информация о ингредиенте'
+              onClose={() => closeModal('/')}
+            >
               <IngredientDetails />
             </Modal>
           }

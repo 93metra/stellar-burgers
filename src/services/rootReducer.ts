@@ -4,7 +4,6 @@ import feedsReducer from './slices/feedsSlice';
 import ingredientsReducer from './slices/ingredientsSlice';
 import ordersReducer from './slices/ordersSlice';
 
-
 const rootReducer = combineReducers({
   feeds: feedsReducer,
   ingredients: ingredientsReducer,
