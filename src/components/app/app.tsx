@@ -29,10 +29,10 @@ const App = () => {
   };
 
   // Заглушка для защищённых роутов (в дальнейшем можно заменить на реальную проверку авторизации)
-  const isAuthenticated = true; // или true, в зависимости от состояния авторизации
+  const isAuthenticated = false; // или true, в зависимости от состояния авторизации
   const dispatch = useDispatch();
 
-  // Get the ingredients data from the Redux store
+  // Get the ingredients/feeds data from the Redux store
   useEffect(() => {
     dispatch(fetchIngredients());
   }, [dispatch]);

@@ -12,9 +12,9 @@ export const IngredientDetails: FC = () => {
   const ingredients = useSelector((state) => state.ingredients)
     .data as TIngredient[];
 
-  useEffect(() => {
-    console.log(ingredients);
-  }, [ingredients]);
+  // useEffect(() => {
+  //   console.log(ingredients);
+  // }, [ingredients]);
 
   // Use find to get a single ingredient
   const ingredientData = ingredients?.find(

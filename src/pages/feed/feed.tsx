@@ -13,9 +13,9 @@ export const Feed: FC = () => {
     (state: RootState) => state.feeds
   );
 
-  if (loading) {
-    return <Preloader />;
-  }
+  // if (loading) {
+  //   return <Preloader />;
+  // }
 
   if (!feedsData || !feedsData.orders.length) {
     return <Preloader />;
