@@ -17,10 +17,11 @@ import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { AppHeader } from '@components';
 // import { AppHeader } from '@ui';
 
-import { useDispatch } from '../../services/store';
+import { useDispatch, useSelector } from '../../services/store';
 import { useEffect } from 'react';
 import { fetchIngredients } from '../../services/slices/ingredientsSlice';
 import { fetchFeeds } from '../../services/slices/feedsSlice';
+import { fetchUser } from '../../services/slices/userSlice';
 
 const App = () => {
   const navigate = useNavigate();
@@ -29,16 +30,14 @@ const App = () => {
   };
 
   // Заглушка для защищённых роутов (в дальнейшем можно заменить на реальную проверку авторизации)
-  const isAuthenticated = false; // или true, в зависимости от состояния авторизации
+  const isAuthenticated = useSelector((state) => state.user.user); // или true, в зависимости от состояния авторизации
   const dispatch = useDispatch();
 
   // Get the ingredients/feeds data from the Redux store
   useEffect(() => {
     dispatch(fetchIngredients());
-  }, [dispatch]);
-
-  useEffect(() => {
-    dispatch(fetchFeeds());
+    // dispatch(fetchFeeds());
+    dispatch(fetchUser());
   }, [dispatch]);
 
   return (

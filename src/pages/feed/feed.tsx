@@ -9,6 +9,11 @@ import { RootState } from '../../services/store';
 
 export const Feed: FC = () => {
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchFeeds());
+  }, [dispatch]);
+
   const { data: feedsData, loading } = useSelector(
     (state: RootState) => state.feeds
   );

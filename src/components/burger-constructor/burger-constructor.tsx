@@ -1,12 +1,21 @@
 //src/components/burger-constructor/burger-constructor.tsx
-import { FC, useMemo } from 'react';
+import { FC, useMemo, useCallback } from 'react';
 import { TConstructorIngredient, TIngredient } from '@utils-types';
 import { BurgerConstructorUI } from '@ui';
 import { useDispatch, useSelector } from '../../services/store';
+import { createOrder, resetOrder } from '../../services/slices/ordersSlice';
+import { resetConstructor } from '../../services/slices/burgerConstructorSlice';
 
 export const BurgerConstructor: FC = () => {
   /** TODO: взять переменные constructorItems, orderRequest и orderModalData из стора */
   const { bun, ingredients } = useSelector(state => state.burgerConstructor);
+  // const orderRequest = useSelector(state => state.orders.loading);
+  // const orderModalData = useSelector(state => state.orders.data);
+  
+  // const orderRequest = false
+  // const orderModalData = null
+
+  const dispatch = useDispatch();
   const orderRequest = useSelector(state => state.orders.loading);
   const orderModalData = useSelector(state => state.orders.data);
 
@@ -14,6 +23,12 @@ export const BurgerConstructor: FC = () => {
     bun,
     ingredients
   };
+
+  const ingredientIds = useMemo(() => {
+    const ids = ingredients.map(ingredient => ingredient._id);
+    if (bun) ids.push(bun._id, bun._id); // Add bun _id twice, for top and bottom
+    return ids;
+  }, [bun, ingredients]);
   
   // const constructorItems = {
   //   bun: null as TConstructorIngredient | null,
@@ -24,10 +39,20 @@ export const BurgerConstructor: FC = () => {
 
   // const orderModalData = null;
 
-  const onOrderClick = () => {
+  // const onOrderClick = () => {
+  //   if (!constructorItems.bun || orderRequest) return;
+  // };
+
+  const onOrderClick = useCallback(() => {
     if (!constructorItems.bun || orderRequest) return;
-  };
-  const closeOrderModal = () => {};
+    // Dispatch createOrder thunk with ingredientIds
+    dispatch(createOrder(ingredientIds));
+  }, [constructorItems.bun, orderRequest, ingredientIds, dispatch]);
+  
+  const closeOrderModal = useCallback(() => {
+    dispatch(resetOrder());
+    dispatch(resetConstructor());
+  }, [dispatch]);
 
   const price = useMemo(
     () =>
