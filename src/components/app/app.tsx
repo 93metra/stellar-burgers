@@ -25,6 +25,7 @@ import { useDispatch, useSelector } from '../../services/store';
 import { useEffect } from 'react';
 import { fetchIngredients } from '../../services/slices/ingredientsSlice';
 import { fetchUser } from '../../services/slices/userSlice';
+import ProtectedRoute from '../protected-route/protected-route';
 
 const App = () => {
   const location = useLocation();
@@ -58,37 +59,31 @@ const App = () => {
         {/* Защищённые маршруты */}
         <Route
           path='/login'
-          element={!isAuthenticated ? <Login /> : <Navigate to='/profile' />}
+          element={<ProtectedRoute onlyUnAuth element={<Login />} />}
         />
         <Route
           path='/register'
-          element={!isAuthenticated ? <Register /> : <Navigate to='/profile' />}
+          element={<ProtectedRoute onlyUnAuth element={<Register />} />}
         />
         <Route
           path='/forgot-password'
-          element={
-            !isAuthenticated ? <ForgotPassword /> : <Navigate to='/profile' />
-          }
+          element={<ProtectedRoute onlyUnAuth element={<ForgotPassword />} />}
         />
         <Route
           path='/reset-password'
-          element={
-            !isAuthenticated ? <ResetPassword /> : <Navigate to='/profile' />
-          }
+          element={<ProtectedRoute onlyUnAuth element={<ResetPassword />} />}
         />
         <Route
           path='/profile'
-          element={!isAuthenticated ? <Navigate to='/login' /> : <Profile />}
+          element={<ProtectedRoute element={<Profile />} />}
         />
         <Route
           path='/profile/orders'
-          element={
-            !isAuthenticated ? <Navigate to='/login' /> : <ProfileOrders />
-          }
+          element={<ProtectedRoute element={<ProfileOrders />} />}
         />
         <Route
           path='/profile/orders/:id'
-          element={!isAuthenticated ? <Navigate to='/login' /> : <OrderInfo />}
+          element={<ProtectedRoute element={<OrderInfo />} />}
         />
 
         {/* Страница 404 */}
