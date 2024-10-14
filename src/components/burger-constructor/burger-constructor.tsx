@@ -5,16 +5,20 @@ import { BurgerConstructorUI } from '@ui';
 import { useDispatch, useSelector } from '../../services/store';
 import { createOrder, resetOrder } from '../../services/slices/ordersSlice';
 import { resetConstructor } from '../../services/slices/burgerConstructorSlice';
+import { useNavigate } from 'react-router-dom';
 
 export const BurgerConstructor: FC = () => {
   /** TODO: взять переменные constructorItems, orderRequest и orderModalData из стора */
   const { bun, ingredients } = useSelector(state => state.burgerConstructor);
+  const isAuthenticated = useSelector((state) => !!state.user.user); // Ensure it's a boolean
+
   // const orderRequest = useSelector(state => state.orders.loading);
   // const orderModalData = useSelector(state => state.orders.data);
   
   // const orderRequest = false
   // const orderModalData = null
 
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const orderRequest = useSelector(state => state.orders.loading);
   const orderModalData = useSelector(state => state.orders.data);
@@ -26,7 +30,7 @@ export const BurgerConstructor: FC = () => {
 
   const ingredientIds = useMemo(() => {
     const ids = ingredients.map(ingredient => ingredient._id);
-    if (bun) ids.push(bun._id, bun._id); // Add bun _id twice, for top and bottom
+    if (bun) ids.push(bun._id, bun._id); 
     return ids;
   }, [bun, ingredients]);
   
@@ -45,9 +49,13 @@ export const BurgerConstructor: FC = () => {
 
   const onOrderClick = useCallback(() => {
     if (!constructorItems.bun || orderRequest) return;
-    // Dispatch createOrder thunk with ingredientIds
-    dispatch(createOrder(ingredientIds));
-  }, [constructorItems.bun, orderRequest, ingredientIds, dispatch]);
+
+    if (isAuthenticated) {
+      dispatch(createOrder(ingredientIds));
+    } else {
+      navigate('/login');
+    }
+  }, [constructorItems.bun, orderRequest, ingredientIds, dispatch, isAuthenticated, navigate]);
   
   const closeOrderModal = useCallback(() => {
     dispatch(resetOrder());

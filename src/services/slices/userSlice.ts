@@ -92,8 +92,15 @@ const userSlice = createSlice({
         state.error = null;
       })
       .addCase(loginUser.fulfilled, (state, action) => {
+        const { refreshToken, accessToken, user } = action.payload;
+        
+        // Save tokens
+        localStorage.setItem('refreshToken', refreshToken);
+        setCookie('accessToken', accessToken);
+      
+        // Update the user state
         state.loading = false;
-        state.user = action.payload.user; // сохраняем пользователя после входа
+        state.user = user;
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;

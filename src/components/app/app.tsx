@@ -104,7 +104,7 @@ const App = () => {
             !isAuthenticated ? (
               <Navigate to='/login' />
             ) : (
-              <Modal title='Детали заказа' onClose={() => {}}>
+              <Modal title='Детали заказа' onClose={() => closeModal('/profile/orders')}>
                 <OrderInfo />
               </Modal>
             )
