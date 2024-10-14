@@ -1,5 +1,5 @@
 //src/components/burger-constructor/burger-constructor.tsx
-import { FC, useMemo, useCallback } from 'react';
+import { FC, useMemo, useCallback, useEffect } from 'react';
 import { TConstructorIngredient, TIngredient } from '@utils-types';
 import { BurgerConstructorUI } from '@ui';
 import { useDispatch, useSelector } from '../../services/store';
@@ -71,7 +71,10 @@ export const BurgerConstructor: FC = () => {
       ),
     [constructorItems]
   );
-
+  
+  useEffect(() => () => {
+      dispatch(resetOrder());
+    }, [dispatch]);
   // return null;
 
   return (
