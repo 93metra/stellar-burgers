@@ -9,11 +9,13 @@ export const IngredientsCategory = forwardRef<
   TIngredientsCategoryProps
 >(({ title, titleRef, ingredients }, ref) => {
   /** TODO: взять переменную из стора */
+
+  const constructorIngredientsBun = useSelector((state) => state.burgerConstructor.bun);
+  const constructorIngredientsIngredients = useSelector((state) => state.burgerConstructor.ingredients);
+
   const burgerConstructor = {
-    bun: {
-      _id: ''
-    },
-    ingredients
+    bun: constructorIngredientsBun,
+    ingredients: constructorIngredientsIngredients
   };
 
   const ingredientsCounters = useMemo(() => {

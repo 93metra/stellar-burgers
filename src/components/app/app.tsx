@@ -82,7 +82,7 @@ const App = () => {
                 <IngredientDetails />
               </Modal>
             }
-          />
+          />            
           <Route
             path='/profile/orders/:id'
             element={
