@@ -5,7 +5,6 @@ import { TOrdersData } from '../../utils/types';
 
 export const fetchFeeds = createAsyncThunk('feeds/fetchFeeds', async () => {
   const response = await getFeedsApi();
-  // console.log(response.totalToday);
   return response;
 });
 

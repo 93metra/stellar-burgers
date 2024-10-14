@@ -9,16 +9,6 @@ import { fetchOrderByNumber } from '../../services/slices/ordersSlice';
 
 export const OrderInfo: FC = () => {
   /** TODO: взять переменные orderData и ingredients из стора */
-  // const orderData = {
-  //   createdAt: '',
-  //   ingredients: [],
-  //   _id: '',
-  //   status: '',
-  //   name: '',
-  //   updatedAt: 'string',
-  //   number: 0
-  // };
-
   const params = useParams();
   const dispatch = useDispatch();
 
@@ -34,19 +24,6 @@ export const OrderInfo: FC = () => {
       dispatch(fetchOrderByNumber(Number(params.id)));
     }
   }, [dispatch, params.id]);
-
-  // useEffect(() => {
-  //   if (orderData) {
-  //     console.log("Order Data:", orderData);
-  //   } else if (error) {
-  //     console.error("Error fetching order:", error);
-  //   }
-  // }, [orderData, error]);
-  // useEffect(() => {
-  //   console.log(params.id);
-  // }, [])
-
-  // const ingredients: TIngredient[] = [];
 
   /* Готовим данные для отображения */
   const orderInfo = useMemo(() => {

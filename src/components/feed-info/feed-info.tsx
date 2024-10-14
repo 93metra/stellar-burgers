@@ -18,7 +18,6 @@ export const FeedInfo: FC = () => {
   /** TODO: взять переменные из стора */
   const dispatch = useDispatch();
 
-  // Get the feeds data from the Redux store
   const { data, loading, error } = useSelector(
     (state: RootState) => state.feeds
   );

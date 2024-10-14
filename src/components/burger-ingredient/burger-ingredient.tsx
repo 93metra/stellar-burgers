@@ -13,7 +13,8 @@ export const BurgerIngredient: FC<TBurgerIngredientProps> = memo(
     const location = useLocation();
     const dispatch = useDispatch();
 
-    const generateUniqueId = () => '_' + Math.random().toString(36).substr(2, 9);
+    const generateUniqueId = () =>
+      '_' + Math.random().toString(36).substr(2, 9);
 
     const handleAdd = () => {
       const ingredientWithId = { ...ingredient, id: generateUniqueId() };

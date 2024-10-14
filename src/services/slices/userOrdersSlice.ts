@@ -3,7 +3,6 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { getOrdersApi } from '../../utils/burger-api';
 import { TOrder } from '../../utils/types';
 
-// Thunk for fetching user orders
 export const fetchUserOrders = createAsyncThunk(
   'userOrders/fetchUserOrders',
   async () => {
@@ -21,7 +20,7 @@ interface UserOrdersState {
 const initialState: UserOrdersState = {
   orders: [],
   loading: false,
-  error: null,
+  error: null
 };
 
 const userOrdersSlice = createSlice({

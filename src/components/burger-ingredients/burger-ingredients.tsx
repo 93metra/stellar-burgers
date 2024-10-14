@@ -10,11 +10,6 @@ import { TIngredient } from '../../utils/types';
 
 export const BurgerIngredients: FC = () => {
   /** TODO: взять переменные из стора */
-  // const ingredients = useSelector((state) => state.ingredients).data;
-
-  // const buns = [];
-  // const mains = [];
-  // const sauces = [];
 
   const ingredients = useSelector((state) => state.ingredients)
     .data as TIngredient[];
@@ -65,8 +60,6 @@ export const BurgerIngredients: FC = () => {
     if (tab === 'sauce')
       titleSaucesRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
-
-  // return null;
 
   return (
     <BurgerIngredientsUI

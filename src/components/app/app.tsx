@@ -12,7 +12,13 @@ import {
 import { Modal, OrderInfo, IngredientDetails } from '@components';
 import '../../index.css';
 import styles from './app.module.css';
-import { Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
+import {
+  Routes,
+  Route,
+  Navigate,
+  useNavigate,
+  useLocation
+} from 'react-router-dom';
 import { AppHeader } from '@components';
 
 import { useDispatch, useSelector } from '../../services/store';
@@ -25,14 +31,12 @@ const App = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // Сохраняем текущее местоположение, если оно не является модальным
   const backgroundLocation = location.state?.background;
 
   const closeModal = (path: string) => {
     navigate(path, { replace: true });
   };
 
-  // Заглушка для защищённых роутов
   const isAuthenticated = useSelector((state) => state.user.user);
 
   // Получение данных ингредиентов/пользователя
@@ -45,20 +49,47 @@ const App = () => {
     <div className={styles.app}>
       <AppHeader />
       <Routes location={backgroundLocation || location}>
-        {/* Обычные маршруты */}
+        {/* Публичные маршруты */}
         <Route path='/' element={<ConstructorPage />} />
         <Route path='/feed' element={<Feed />} />
         <Route path='/feed/:id' element={<OrderInfo />} />
         <Route path='/ingredients/:id' element={<IngredientDetails />} />
 
         {/* Защищённые маршруты */}
-        <Route path='/login' element={!isAuthenticated ? <Login /> : <Navigate to='/profile' />} />
-        <Route path='/register' element={!isAuthenticated ? <Register /> : <Navigate to='/profile' />} />
-        <Route path='/forgot-password' element={!isAuthenticated ? <ForgotPassword /> : <Navigate to='/profile' />} />
-        <Route path='/reset-password' element={!isAuthenticated ? <ResetPassword /> : <Navigate to='/profile' />} />
-        <Route path='/profile' element={!isAuthenticated ? <Navigate to='/login' /> : <Profile />} />
-        <Route path='/profile/orders' element={!isAuthenticated ? <Navigate to='/login' /> : <ProfileOrders />} />
-        <Route path='/profile/orders/:id' element={!isAuthenticated ? <Navigate to='/login' /> : <OrderInfo />} />
+        <Route
+          path='/login'
+          element={!isAuthenticated ? <Login /> : <Navigate to='/profile' />}
+        />
+        <Route
+          path='/register'
+          element={!isAuthenticated ? <Register /> : <Navigate to='/profile' />}
+        />
+        <Route
+          path='/forgot-password'
+          element={
+            !isAuthenticated ? <ForgotPassword /> : <Navigate to='/profile' />
+          }
+        />
+        <Route
+          path='/reset-password'
+          element={
+            !isAuthenticated ? <ResetPassword /> : <Navigate to='/profile' />
+          }
+        />
+        <Route
+          path='/profile'
+          element={!isAuthenticated ? <Navigate to='/login' /> : <Profile />}
+        />
+        <Route
+          path='/profile/orders'
+          element={
+            !isAuthenticated ? <Navigate to='/login' /> : <ProfileOrders />
+          }
+        />
+        <Route
+          path='/profile/orders/:id'
+          element={!isAuthenticated ? <Navigate to='/login' /> : <OrderInfo />}
+        />
 
         {/* Страница 404 */}
         <Route path='*' element={<NotFound404 />} />
@@ -78,15 +109,21 @@ const App = () => {
           <Route
             path='/ingredients/:id'
             element={
-              <Modal title='Информация о ингредиенте' onClose={() => closeModal('/')}>
+              <Modal
+                title='Информация о ингредиенте'
+                onClose={() => closeModal('/')}
+              >
                 <IngredientDetails />
               </Modal>
             }
-          />            
+          />
           <Route
             path='/profile/orders/:id'
             element={
-              <Modal title='Детали заказа' onClose={() => closeModal('/profile/orders')}>
+              <Modal
+                title='Детали заказа'
+                onClose={() => closeModal('/profile/orders')}
+              >
                 <OrderInfo />
               </Modal>
             }

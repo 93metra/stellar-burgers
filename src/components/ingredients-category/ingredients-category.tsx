@@ -10,8 +10,12 @@ export const IngredientsCategory = forwardRef<
 >(({ title, titleRef, ingredients }, ref) => {
   /** TODO: взять переменную из стора */
 
-  const constructorIngredientsBun = useSelector((state) => state.burgerConstructor.bun);
-  const constructorIngredientsIngredients = useSelector((state) => state.burgerConstructor.ingredients);
+  const constructorIngredientsBun = useSelector(
+    (state) => state.burgerConstructor.bun
+  );
+  const constructorIngredientsIngredients = useSelector(
+    (state) => state.burgerConstructor.ingredients
+  );
 
   const burgerConstructor = {
     bun: constructorIngredientsBun,
