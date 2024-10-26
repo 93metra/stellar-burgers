@@ -1,6 +1,12 @@
 // src/services/slices/userSlice.test.ts
 import { expect, test, describe } from '@jest/globals';
-import userSlice, { fetchUser, registerUser, loginUser, updateUser, logoutUser } from './userSlice';
+import userSlice, {
+  fetchUser,
+  registerUser,
+  loginUser,
+  updateUser,
+  logoutUser
+} from './userSlice';
 import { TUser } from '../../utils/types';
 
 describe('userSlice', () => {

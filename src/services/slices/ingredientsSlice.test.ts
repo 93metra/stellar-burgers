@@ -7,7 +7,7 @@ describe('ingredientsSlice', () => {
   const initialState = {
     data: null,
     loading: false,
-    error: null,
+    error: null
   };
 
   test('should set loading to true when fetchIngredients is pending', () => {
@@ -29,12 +29,12 @@ describe('ingredientsSlice', () => {
         price: 10,
         image: 'test-image',
         image_large: 'test-image-large',
-        image_mobile: 'test-image-mobile',
-      },
+        image_mobile: 'test-image-mobile'
+      }
     ];
     const action = {
       type: fetchIngredients.fulfilled.type,
-      payload: ingredients,
+      payload: ingredients
     };
     const state = ingredientsSlice(initialState, action);
     expect(state.data).toBe(ingredients);
@@ -45,7 +45,7 @@ describe('ingredientsSlice', () => {
     const error = 'Test Error';
     const action = {
       type: fetchIngredients.rejected.type,
-      error: { message: error },
+      error: { message: error }
     };
     const state = ingredientsSlice(initialState, action);
     expect(state.error).toBe(error);

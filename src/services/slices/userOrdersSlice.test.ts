@@ -19,22 +19,22 @@ describe('userOrdersSlice', () => {
   test('should set orders and loading to false when fetchUserOrders is fulfilled', () => {
     const mockOrders: TOrder[] = [
       {
-        _id: "testId1",
-        status: "done",
-        name: "Test Order 1",
-        createdAt: "2023-01-01",
-        updatedAt: "2023-01-02",
+        _id: 'testId1',
+        status: 'done',
+        name: 'Test Order 1',
+        createdAt: '2023-01-01',
+        updatedAt: '2023-01-02',
         number: 123,
-        ingredients: ["ingredient1", "ingredient2"]
+        ingredients: ['ingredient1', 'ingredient2']
       },
       {
-        _id: "testId2",
-        status: "pending",
-        name: "Test Order 2",
-        createdAt: "2023-01-03",
-        updatedAt: "2023-01-04",
+        _id: 'testId2',
+        status: 'pending',
+        name: 'Test Order 2',
+        createdAt: '2023-01-03',
+        updatedAt: '2023-01-04',
         number: 124,
-        ingredients: ["ingredient3", "ingredient4"]
+        ingredients: ['ingredient3', 'ingredient4']
       }
     ];
 

@@ -18,13 +18,13 @@ describe('ordersSlice', () => {
 
   test('should set data and loading to false when fetchOrderByNumber is fulfilled', () => {
     const mockOrder: TOrder = {
-      _id: "testId",
-      status: "done",
-      name: "Test Order",
-      createdAt: "2023-01-01",
-      updatedAt: "2023-01-02",
+      _id: 'testId',
+      status: 'done',
+      name: 'Test Order',
+      createdAt: '2023-01-01',
+      updatedAt: '2023-01-02',
       number: 123,
-      ingredients: ["ingredient1", "ingredient2"]
+      ingredients: ['ingredient1', 'ingredient2']
     };
 
     const action = {
@@ -55,13 +55,13 @@ describe('ordersSlice', () => {
 
   test('should set data and loading to false when createOrder is fulfilled', () => {
     const mockOrder: TOrder = {
-      _id: "testId",
-      status: "done",
-      name: "Test Order",
-      createdAt: "2023-01-01",
-      updatedAt: "2023-01-02",
+      _id: 'testId',
+      status: 'done',
+      name: 'Test Order',
+      createdAt: '2023-01-01',
+      updatedAt: '2023-01-02',
       number: 123,
-      ingredients: ["ingredient1", "ingredient2"]
+      ingredients: ['ingredient1', 'ingredient2']
     };
 
     const action = {

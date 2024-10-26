@@ -1,3 +1,4 @@
+// src/pages/constructor-page/constructor-page.tsx
 import { useSelector } from '../../services/store';
 
 import styles from './constructor-page.module.css';
@@ -8,7 +9,6 @@ import { Preloader } from '../../components/ui';
 import { FC } from 'react';
 
 export const ConstructorPage: FC = () => {
-  /** TODO: взять переменную из стора */
   const isIngredientsLoading = useSelector(
     (state) => state.ingredients
   ).loading;

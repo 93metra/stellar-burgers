@@ -9,7 +9,6 @@ import { useSelector } from '../../services/store';
 import { TIngredient } from '../../utils/types';
 
 export const BurgerIngredients: FC = () => {
-  /** TODO: взять переменные из стора */
 
   const ingredients = useSelector((state) => state.ingredients)
     .data as TIngredient[];

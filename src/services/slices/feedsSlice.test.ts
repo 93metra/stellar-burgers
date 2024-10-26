@@ -18,15 +18,17 @@ describe('feedsSlice', () => {
 
   test('should set data and loading to false when fetchFeeds is fulfilled', () => {
     const mockData: TOrdersData = {
-      orders: [{
-        _id: "testId",
-        status: "done",
-        name: "Test Order",
-        createdAt: "2023-01-01",
-        updatedAt: "2023-01-02",
-        number: 123,
-        ingredients: ["ingredient1", "ingredient2"]
-      }],
+      orders: [
+        {
+          _id: 'testId',
+          status: 'done',
+          name: 'Test Order',
+          createdAt: '2023-01-01',
+          updatedAt: '2023-01-02',
+          number: 123,
+          ingredients: ['ingredient1', 'ingredient2']
+        }
+      ],
       total: 1,
       totalToday: 1
     };
@@ -44,7 +46,7 @@ describe('feedsSlice', () => {
     const error = 'Test Error';
     const action = {
       type: fetchFeeds.rejected.type,
-      error: { message: error}
+      error: { message: error }
     };
     const state = feedsSlice(initialState, action);
     expect(state.error).toEqual(error);
