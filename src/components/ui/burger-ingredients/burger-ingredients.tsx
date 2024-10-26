@@ -1,4 +1,5 @@
-import React, { FC, memo } from 'react';
+// src/components/ui/burger-ingredients/burger-ingredients.tsx
+import { FC, memo } from 'react';
 import { Tab } from '@zlden/react-developer-burger-ui-components';
 
 import styles from './burger-ingredients.module.css';
